@@ -5,33 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - noops.work</title>
     <link rel="stylesheet" href="../index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-neutral-900 text-white min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <header class="mb-8">
-            <h1 class="text-5xl font-bold text-emerald-400 mb-4">Projects</h1>
-            <nav>
-                <a href="../index.html" class="text-blue-400 hover:underline mr-4">Home</a>
-                <a href="../blog/index.html" class="text-blue-400 hover:underline">Blog</a>
-            </nav>
-        </header>
+<body class="font-sans bg-[#121212] text-[#e0e0e0] min-h-screen flex flex-col">
+    <header class="container mx-auto px-4 py-6 border-b border-gray-700">
+      <div class="flex justify-between items-center">
+        <a href="/" class="text-3xl font-bold text-emerald-400">noops.work</a>
+        <nav class="space-x-6">
+          <a href="/" class="text-blue-400 hover:text-blue-300 transition-colors duration-200">Home</a>
+          <a href="../blog/index.html" class="text-blue-400 hover:text-blue-300 transition-colors duration-200">Blog</a>
+          <a href="./index.html" class="text-blue-400 hover:text-blue-300 transition-colors duration-200">Projects</a>
+        </nav>
+      </div>
+    </header>
 
-        <main>
-            <section class="projects-list">
-                <h2 class="text-3xl font-semibold text-emerald-300 mb-6">My Projects</h2>
-                <ul class="space-y-4">
-                    <li>
-                        <a href="./my-first-project.html" class="text-xl text-blue-300 hover:underline">My First Project</a>
-                        <p class="text-gray-400 text-sm">Completed in January 2026</p>
-                    </li>
-                    <!-- More projects will be listed here -->
-                </ul>
-            </section>
-        </main>
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <section class="projects-list">
+            <h1 class="text-5xl font-bold text-emerald-400 mb-6">Projects</h1>
+            <ul class="space-y-4">
+                <li>
+                    <a href="./my-first-project.html" class="text-xl text-blue-300 hover:underline">My First Project</a>
+                    <p class="text-gray-400 text-sm">Completed in January 2026</p>
+                </li>
+            </ul>
+        </section>
+    </main>
 
-        <footer class="mt-12 text-center text-gray-500 text-sm">
-            &copy; 2026 noops.work
-        </footer>
-    </div>
+    <footer class="container mx-auto px-4 py-6 text-center text-gray-500 text-sm border-t border-gray-700">
+        &copy; 2026 noops.work
+    </footer>
 </body>
 </html>

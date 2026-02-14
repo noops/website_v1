@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx,md}", // Assuming markdown files will also contain Tailwind classes
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
