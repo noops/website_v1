@@ -3,23 +3,23 @@ import { Cpu, Wind, Zap, Music } from "lucide-react";
 export default function AboutPage() {
     const interests = [
         {
-            title: "AI",
-            description: "This stuff is unbelievable. I have no idea where we're headed, I'm just along for the ride.",
+            title: "Just Do Things",
+            description: "You can literally just do things. With the tools and knowledge available today there's nothing holding you back.",
             icon: <Cpu size={24} />,
         },
         {
-            title: "Minimalism",
-            description: "Trying to stop being a mindless consoomer in all ways. De-clutter and feel better.",
+            title: "Simple Design",
+            description: "I'm a big fan of minimalism. I think digital tools should be clean, focused, and easy on the eyes.",
             icon: <Wind size={24} />,
         },
         {
-            title: "Doing things",
-            description: "You can literally just do things. Given enough time and effort you can do literally anything.",
+            title: "Building Fast",
+            description: "There's nothing quite like the feeling of turning an idea into a working app in just a few hours.",
             icon: <Zap size={24} />,
         },
         {
-            title: "Being Really Good At Something",
-            description: "It's really cool and feels so good. Currently trying for guitar.",
+            title: "Staying Curious",
+            description: "I'm constantly learning. Whether it's a new model or a better way to code, I'm always looking for what's next.",
             icon: <Music size={24} />,
         },
     ];
@@ -27,10 +27,10 @@ export default function AboutPage() {
     return (
         <div className="container mx-auto px-6 py-20 max-w-4xl">
             <section className="mb-24">
-                <h1 className="text-5xl font-bold mb-8 text-gradient">About</h1>
-                <div className="prose prose-invert prose-lg max-w-none text-muted leading-relaxed space-y-6">
+                <h1 className="text-5xl font-bold mb-8 text-foreground">About</h1>
+                <div className="prose prose-invert prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6 text-xl font-light">
                     <p>
-                        Come with me on a journey as I vibe code my way to greatness. Greatness here meaning something along the lines of eventually creating something useful that people or business will pay me for so that I can quit my traditional 9-5 job. You don’t need my life story, people already share too much about themselves.
+                        Data scientist exploring AI and using agents. Trying to leverage my professional experience to make AI more accessible and build cool things.
                     </p>
                 </div>
             </section>
@@ -43,12 +43,12 @@ export default function AboutPage() {
 
                 <div className="grid md:grid-cols-2 gap-8">
                     {interests.map((interest, index) => (
-                        <div key={index} className="glass p-8 rounded-3xl group hover:border-primary/30 transition-all">
+                        <div key={index} className="bg-card border border-border p-8 rounded-3xl group hover:border-border/80 transition-all">
                             <div className="text-primary mb-4 group-hover:scale-110 transition-transform origin-left">
                                 {interest.icon}
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">{interest.title}</h3>
-                            <p className="text-muted leading-relaxed">
+                            <h3 className="text-xl font-bold mb-3 text-foreground">{interest.title}</h3>
+                            <p className="text-muted-foreground leading-relaxed">
                                 {interest.description}
                             </p>
                         </div>

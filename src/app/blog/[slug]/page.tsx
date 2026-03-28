@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const posts = {
     "first-post": {
@@ -27,19 +28,21 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
     return (
         <div className="container mx-auto px-6 py-20 max-w-2xl">
-            <Link href="/musings" className="inline-flex items-center gap-2 text-muted hover:text-primary transition-colors mb-12">
-                <ArrowLeft size={16} /> Back to Musings
+            <Link href="/blog">
+                <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-primary mb-12 -ml-3">
+                    <ArrowLeft size={16} /> Back to Blog
+                </Button>
             </Link>
 
             <article>
                 <header className="mb-12">
-                    <span className="text-sm text-muted mb-4 block">{post.date}</span>
-                    <h1 className="text-5xl font-bold text-white mb-8 leading-tight">
+                    <span className="text-sm text-muted-foreground mb-4 block">{post.date}</span>
+                    <h1 className="text-5xl font-bold text-foreground mb-8 leading-tight">
                         {post.title}
                     </h1>
                 </header>
 
-                <div className="prose prose-invert prose-lg max-w-none text-muted leading-relaxed space-y-6">
+                <div className="prose prose-invert prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
                     {post.content}
                 </div>
             </article>
