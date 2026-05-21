@@ -17,6 +17,13 @@ const projects = [
         description: "A full fantasy football app built in just one afternoon to see if I could really pull it off with AI.",
         tech: ["Next.js", "Tailwind", "Vercel", "API Integration"],
     },
+    {
+        slug: "burrito-burrito-burrito",
+        title: "burritoburritoburrito",
+        date: "May 2026",
+        description: "A map-based burrito finder powered by live OpenStreetMap data. The v0 of a hyper-specific social platform built entirely around burritos.",
+        tech: ["React", "Leaflet", "OpenStreetMap", "Vite", "Vercel"],
+    },
 ];
 
 export default function ProjectsPage() {

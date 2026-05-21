@@ -51,6 +51,33 @@ const projects = {
         link: "https://shmantasyshmootball.vercel.app/",
         github: "https://github.com/noops/dynasty_site_v1",
     },
+    "burrito-burrito-burrito": {
+        title: "burritoburritoburrito",
+        date: "May 2026",
+        description: "Find the best burritos near you, anywhere in the world.",
+        content: (
+            <>
+                <p>
+                    Started as a simple question: what if there was a map just for burritos? No restaurant noise, no Yelp clutter — just burritos.
+                </p>
+                <p>
+                    The app pulls live data from OpenStreetMap via the Overpass API with no API keys required. Search any city in the world, filter by style, and get directions in one tap.
+                </p>
+                <p>
+                    But this is just v0. The real goal is to build a hyper-specific social platform around burritos — check-ins, reviews, a personal burrito passport, and eventually a full social graph for people who take burritos seriously.
+                </p>
+                <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">Project Details</h3>
+                <ul className="list-disc list-inside space-y-2">
+                    <li><strong>Framework:</strong> React 19 + Vite</li>
+                    <li><strong>Map:</strong> Leaflet + OpenStreetMap (no API key needed)</li>
+                    <li><strong>Data:</strong> Overpass API + Nominatim geocoding</li>
+                    <li><strong>Deployment:</strong> Vercel + Cloudflare</li>
+                </ul>
+            </>
+        ),
+        link: "https://burrito-burrito-burrito.com",
+        github: "https://github.com/noops/burrito-burrito-burrito",
+    },
 };
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
