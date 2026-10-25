@@ -1,59 +1,30 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const projects = [
-    {
-        slug: "slog-maxxing",
-        title: "Slog Maxxing",
-        date: "March 2026",
-        description: "A personal dashboard for tracking my day and chatting with an AI about my notes. It makes journaling actually useful.",
-        tech: ["Next.js", "Tailwind CSS", "RAG"],
-    },
-    {
-        slug: "shmantasy-shmootball",
-        title: "Shmantasy Shmootball",
-        date: "Feb 2026",
-        description: "A full fantasy football app built in just one afternoon to see if I could really pull it off with AI.",
-        tech: ["Next.js", "Tailwind", "Vercel", "API Integration"],
-    },
-    {
-        slug: "burrito-burrito-burrito",
-        title: "burritoburritoburrito",
-        date: "May 2026",
-        description: "A map-based burrito finder powered by live OpenStreetMap data. The v0 of a hyper-specific social platform built entirely around burritos.",
-        tech: ["React", "Leaflet", "OpenStreetMap", "Vite", "Vercel"],
-    },
-];
+import { TerminalHeading } from "@/components/terminal-heading";
+import { Tag } from "@/components/tag";
+import { projects } from "@/lib/projects";
 
 export default function ProjectsPage() {
     return (
-        <div className="container mx-auto px-6 py-20 max-w-4xl">
-            <h1 className="text-5xl font-bold mb-12 text-foreground">Projects</h1>
-
-            <div className="grid gap-12">
+        <div>
+            <TerminalHeading command="ls -la projects/" />
+            <div className="space-y-4">
                 {projects.map((project) => (
-                    <article key={project.slug} className="group bg-card border border-border p-8 rounded-3xl hover:border-border/80 transition-all hover:shadow-2xl hover:shadow-primary/5">
-                        <Link href={`/projects/${project.slug}`}>
-                            <div className="flex justify-between items-start mb-4">
-                                <span className="text-sm text-muted-foreground">{project.date}</span>
-                                <Button variant="ghost" size="icon-sm" className="rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <ExternalLink size={18} />
-                                </Button>
-                            </div>
-                            <h2 className="text-3xl font-bold mb-4 group-hover:text-primary transition-colors">{project.title}</h2>
-                            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                                {project.description}
-                            </p>
-                            <div className="flex flex-wrap gap-3">
-                                {project.tech.map((t) => (
-                                    <span key={t} className="px-3 py-1 text-xs rounded-full bg-muted/30 border border-border text-muted-foreground font-medium uppercase tracking-wider">
-                                        {t}
-                                    </span>
-                                ))}
-                            </div>
-                        </Link>
-                    </article>
+                    <Link
+                        key={project.slug}
+                        href={`/projects/${project.slug}`}
+                        className="group block border border-border bg-card p-5 hover:border-muted-foreground transition-colors"
+                    >
+                        <div className="flex items-baseline justify-between gap-4 mb-2">
+                            <h2 className="font-bold text-yellow group-hover:text-green transition-colors">{project.title}</h2>
+                            <span className="text-xs text-muted-foreground shrink-0">{project.date.toLowerCase()}</span>
+                        </div>
+                        <p className="text-muted-foreground leading-relaxed mb-4">{project.summary}</p>
+                        <div className="flex flex-wrap gap-1.5">
+                            {project.tech.map((tech, i) => (
+                                <Tag key={tech} label={tech} index={i} />
+                            ))}
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

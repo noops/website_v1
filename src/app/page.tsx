@@ -1,116 +1,125 @@
-'use client';
-
 import Link from "next/link";
-import { ArrowRight, Code, BookOpen, User, Zap, Cpu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Linkedin } from "lucide-react";
+import { TerminalHeading } from "@/components/terminal-heading";
+import { Tag } from "@/components/tag";
+import { projects } from "@/lib/projects";
+import { posts } from "@/lib/posts";
+
+const STACK = ["python", "sql", "pandas", "numpy", "scikit-learn", "scipy", "statsmodels", "claude code"];
+
+const SOCIALS = [
+  { href: "https://github.com/noops", label: "github", icon: Github },
+  { href: "https://www.linkedin.com/in/ben-kirton-a9667310b/", label: "linkedin", icon: Linkedin },
+];
+
+const CACTUS = String.raw`
+      ,*-.
+      |  |
+  ,.  |  |
+  | |_|  | ,.
+  \__  __/ | |
+     |  |__/ /
+     |  |___/
+     |  |
+  ~~~~~~~~~~~~
+`;
 
 export default function Home() {
+  const [featured] = projects;
+
   return (
-    <div className="container mx-auto px-6 pt-32 pb-40 max-w-5xl">
-      {/* Hero Section */}
-      <section className="mb-24">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-foreground leading-tight">
-          Hey I&apos;m noops, exploring AI <span className="inline-block text-primary"><Cpu size={40} className="inline mb-2" /></span> and building.
-        </h1>
-        <div className="font-mono text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-12 border-l-2 border-primary/20 pl-6 py-2">
-          Trying to leverage my professional experience to make AI more accessible and build cool things. Based in Austin, TX. 🌵
-        </div>
-      </section>
+    <div className="space-y-16">
+      <section className="flex flex-col sm:flex-row gap-8 sm:items-center">
+        <pre aria-hidden className="hidden sm:block text-aqua/70 text-xs leading-tight select-none">
+          {CACTUS}
+        </pre>
 
-      <div className="w-full h-px bg-border border-t border-dashed border-border/50 mb-24" />
-
-      {/* Projects Section - Refined Layout */}
-      <section className="mb-24">
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary" /> Projects
-          </h2>
-          <Link href="/projects">
-            <Button variant="outline" size="sm" className="rounded-full px-6 font-mono text-[10px] uppercase tracking-widest gap-2 bg-card/50">
-              Explore <ArrowRight size={12} />
-            </Button>
-          </Link>
-        </div>
-
-        <div className="group relative overflow-hidden">
-          <div className="flex overflow-x-auto pb-8 gap-8 no-scrollbar snap-x snap-mandatory">
-            {[
-              {
-                slug: "slog-maxxing",
-                title: "Slog Maxxing",
-                year: "2026",
-                description: "Personal dashboard for tracking the day and chatting with notes.",
-                icon: <Code size={48} />,
-                color: "bg-blue-500/10",
-                tags: ["Next.js", "AI"]
-              },
-              {
-                slug: "shmantasy-shmootball",
-                title: "Shmantasy Shmootball",
-                year: "2026",
-                description: "Full fantasy football app built in an afternoon with AI.",
-                icon: <Zap size={48} />,
-                color: "bg-orange-500/10",
-                tags: ["React", "API"]
-              }
-            ].map((project, i) => (
-              <Link 
-                key={i} 
-                href={`/projects/${project.slug}`} 
-                className="flex-shrink-0 w-[300px] md:w-[350px] snap-start"
+        <div className="space-y-4">
+          <div>
+            <p className="text-xs text-muted-foreground">~ whoami</p>
+            <h1 className="text-3xl font-bold text-yellow">noops</h1>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            Data scientist exploring AI and building things. Trying to make AI more accessible and ship cool stuff. Based in Austin, TX.
+          </p>
+          <p className="text-muted-foreground">
+            <span className="text-green">▸</span> building{" "}
+            <Link href={`/projects/${featured.slug}`} className="text-yellow font-bold hover:underline">
+              {featured.title}
+            </Link>{" "}
+            — a social app for burrito people
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {STACK.map((tech, i) => (
+              <Tag key={tech} label={tech} index={i} />
+            ))}
+          </div>
+          <div className="flex gap-4 text-muted-foreground">
+            {SOCIALS.map(({ href, label, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="hover:text-foreground transition-colors"
               >
-                <div className="h-[400px] bg-card/50 border border-border rounded-[2rem] p-8 flex flex-col justify-between hover:bg-card hover:border-primary/30 transition-all duration-500">
-                  <div className="flex items-center justify-between text-muted-foreground/60 font-mono text-[10px] tracking-widest uppercase">
-                    <span>{project.year}</span>
-                    <ArrowRight size={12} />
-                  </div>
-                  
-                  <div className={`w-24 h-24 rounded-2xl ${project.color} flex items-center justify-center self-center group-hover:scale-105 transition-transform duration-500`}>
-                    <div className="text-primary/80 group-hover:text-primary transition-colors">{project.icon}</div>
-                  </div>
-
-                  <div>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-border/30 text-muted-foreground/80">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors">{project.title}</h3>
-                    <p className="text-xs text-muted-foreground/80 leading-relaxed line-clamp-2">{project.description}</p>
-                  </div>
-                </div>
-              </Link>
+                <Icon size={16} />
+              </a>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="w-full h-px bg-border border-t border-dashed border-border/50 mb-24" />
-
-      {/* Blog Section - Clean List */}
       <section>
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-primary" /> Blog Notes
-          </h2>
-          <Link href="/blog">
-            <Button variant="ghost" size="sm" className="rounded-full px-6 font-mono text-[10px] uppercase tracking-widest bg-card/50">
-              Read all
-            </Button>
+        <TerminalHeading command="cat projects.log">
+          <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">
+            ls -a →
           </Link>
-        </div>
-        <div className="grid gap-4">
-          <Link href="/blog/first-post" className="group">
-            <div className="flex items-center justify-between p-8 bg-card border border-border rounded-3xl hover:border-primary/30 transition-all">
-              <div className="flex items-center gap-8">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">Feb 14, 2026</span>
-                <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">My First Blog Post</h3>
-              </div>
-              <ArrowRight size={20} className="text-muted-foreground group-hover:translate-x-2 transition-transform" />
-            </div>
+        </TerminalHeading>
+        <ol className="border-l border-border ml-1.5 space-y-6">
+          {projects.map((project, i) => (
+            <li key={project.slug} className="relative pl-6">
+              <span
+                className={`absolute -left-[4px] top-1.5 size-[7px] rounded-full ${i === 0 ? "bg-green" : "bg-yellow"}`}
+              />
+              <Link href={`/projects/${project.slug}`} className="group block">
+                <p className="text-xs text-green">
+                  {project.title.toLowerCase()} <span className="text-muted-foreground">— {project.date.toLowerCase()}</span>
+                </p>
+                <p className="mt-1 leading-relaxed group-hover:text-yellow transition-colors">{project.summary}</p>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section>
+        <TerminalHeading command="ls blog/">
+          <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+            all →
           </Link>
+        </TerminalHeading>
+        <ul className="divide-y divide-border">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <Link href={`/blog/${post.slug}`} className="group flex items-baseline justify-between gap-4 py-2">
+                <span className="group-hover:text-yellow transition-colors">
+                  <span className="text-muted-foreground mr-2 group-hover:text-green">›</span>
+                  {post.title}
+                </span>
+                <span className="text-xs text-muted-foreground shrink-0">{post.date.toLowerCase()}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <TerminalHeading command="cat why.md" />
+        <div className="border border-border bg-card p-5 space-y-3 text-muted-foreground leading-relaxed">
+          <p>You can literally just do things. With the tools available today there&apos;s nothing holding you back.</p>
+          <p>I like small, focused tools that are easy on the eyes, and the feeling of turning an idea into a working app in an afternoon.</p>
         </div>
       </section>
     </div>

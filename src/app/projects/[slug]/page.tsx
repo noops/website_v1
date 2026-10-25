@@ -1,128 +1,69 @@
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
-
-const projects = {
-    "slog-maxxing": {
-        title: "Slog Maxxing",
-        date: "March 2026",
-        description: "A comprehensive environment for digital journaling, time tracking, and conversational RAG workflows.",
-        content: (
-            <>
-                <p>
-                    I was tired of traditional journaling—it felt like a chore. So I built Slog Maxxing to make it easier to track what I actually do all day and then talk to my notes to find things I've forgotten.
-                </p>
-                <p>
-                    I went for a hyper-minimalist design to keep things focused. The best part is the RAG integration, which lets me ask things like "when did I last work on that API?" and get a really clear answer from my own data.
-                </p>
-                <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">Project Details</h3>
-                <ul className="list-disc list-inside space-y-2">
-                    <li><strong>Framework:</strong> Next.js 15</li>
-                    <li><strong>Design:</strong> Tailwind v4 (Monochrome OKLCH)</li>
-                    <li><strong>Features:</strong> RAG Chat, Session Timers, Stream Management</li>
-                </ul>
-            </>
-        ),
-        link: "https://github.com/noops/slog_maxxing",
-        github: "https://github.com/noops/slog_maxxing",
-    },
-    "shmantasy-shmootball": {
-        title: "Shmantasy Shmootball",
-        date: "Feb 2026",
-        description: "A Dynasty Fantasy Football powerhouse built in an afternoon.",
-        content: (
-            <>
-                <p>
-                    One afternoon, I sat down and wondered: "Could I build an entire fantasy football app before dinner?"
-                </p>
-                <p>
-                    With the help of an AI agent, the answer was... mostly yes! This was an incredible test of how fast you can iterate when you have an AI partner to handle the common coding patterns, letting me focus on the logic and design.
-                </p>
-                <h3 className="text-2xl font-bold mt-8 mb-4 text-white">Project Details</h3>
-                <ul className="list-disc list-inside space-y-2">
-                    <li><strong>Framework:</strong> Next.js 15</li>
-                    <li><strong>Styling:</strong> Tailwind CSS</li>
-                    <li><strong>Deployment:</strong> Vercel</li>
-                    <li><strong>Data:</strong> Fantasy API Integrations</li>
-                </ul>
-            </>
-        ),
-        link: "https://shmantasyshmootball.vercel.app/",
-        github: "https://github.com/noops/dynasty_site_v1",
-    },
-    "burrito-burrito-burrito": {
-        title: "burritoburritoburrito",
-        date: "May 2026",
-        description: "Find the best burritos near you, anywhere in the world.",
-        content: (
-            <>
-                <p>
-                    Started as a simple question: what if there was a map just for burritos? No restaurant noise, no Yelp clutter — just burritos.
-                </p>
-                <p>
-                    The app pulls live data from OpenStreetMap via the Overpass API with no API keys required. Search any city in the world, filter by style, and get directions in one tap.
-                </p>
-                <p>
-                    But this is just v0. The real goal is to build a hyper-specific social platform around burritos — check-ins, reviews, a personal burrito passport, and eventually a full social graph for people who take burritos seriously.
-                </p>
-                <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">Project Details</h3>
-                <ul className="list-disc list-inside space-y-2">
-                    <li><strong>Framework:</strong> React 19 + Vite</li>
-                    <li><strong>Map:</strong> Leaflet + OpenStreetMap (no API key needed)</li>
-                    <li><strong>Data:</strong> Overpass API + Nominatim geocoding</li>
-                    <li><strong>Deployment:</strong> Vercel + Cloudflare</li>
-                </ul>
-            </>
-        ),
-        link: "https://burrito-burrito-burrito.com",
-        github: "https://github.com/noops/burrito-burrito-burrito",
-    },
-};
+import { TerminalHeading } from "@/components/terminal-heading";
+import { Tag } from "@/components/tag";
+import { getProject } from "@/lib/projects";
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const project = projects[slug as keyof typeof projects];
+    const project = getProject(slug);
 
     if (!project) {
         notFound();
     }
 
     return (
-        <div className="container mx-auto px-6 py-20 max-w-2xl">
-            <Link href="/projects">
-                <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-primary mb-12 -ml-3">
-                    <ArrowLeft size={16} /> Back to Projects
-                </Button>
+        <article className="space-y-10">
+            <Link href="/projects" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+                ← cd ..
             </Link>
 
-            <article>
-                <header className="mb-12">
-                    <div className="flex justify-between items-start mb-4">
-                        <span className="text-sm text-muted-foreground">{project.date}</span>
-                        <div className="flex gap-2">
-                            <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                <Button variant="outline" size="sm" className="gap-2">
-                                    <Github size={16} /> Source
-                                </Button>
-                            </a>
-                            <a href={project.link} target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" className="bg-white text-black hover:bg-slate-200 gap-2">
-                                    Live Demo <ExternalLink size={16} />
-                                </Button>
-                            </a>
-                        </div>
-                    </div>
-                    <h1 className="text-5xl font-bold text-foreground mb-8 leading-tight">
-                        {project.title}
-                    </h1>
-                </header>
-
-                <div className="prose prose-invert prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
-                    <p className="text-xl text-foreground font-medium">{project.description}</p>
-                    {project.content}
+            <header className="space-y-3">
+                <p className="text-xs text-muted-foreground">{project.date.toLowerCase()}</p>
+                <h1 className="text-3xl font-bold text-yellow">{project.title}</h1>
+                <p className="text-foreground leading-relaxed">{project.description}</p>
+                <div className="flex gap-2 pt-1 text-xs">
+                    <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-border px-3 py-1.5 text-muted-foreground hover:text-foreground hover:border-muted-foreground transition-colors"
+                    >
+                        source
+                    </a>
+                    <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-green/50 px-3 py-1.5 text-green hover:bg-green/10 transition-colors"
+                    >
+                        live ↗
+                    </a>
                 </div>
-            </article>
-        </div>
+            </header>
+
+            <section className="space-y-4 text-muted-foreground leading-relaxed">
+                {project.body.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                ))}
+            </section>
+
+            <section>
+                <TerminalHeading command="cat details.yml" />
+                <dl className="border border-border bg-card divide-y divide-border">
+                    {project.details.map(({ label, value }) => (
+                        <div key={label} className="flex gap-4 px-4 py-2">
+                            <dt className="w-24 shrink-0 text-green">{label}:</dt>
+                            <dd>{value}</dd>
+                        </div>
+                    ))}
+                </dl>
+                <div className="flex flex-wrap gap-1.5 mt-4">
+                    {project.tech.map((tech, i) => (
+                        <Tag key={tech} label={tech} index={i} />
+                    ))}
+                </div>
+            </section>
+        </article>
     );
 }

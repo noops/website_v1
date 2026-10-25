@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
-const inter = Inter({
-  variable: "--font-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -22,10 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
+        className={`${jetbrainsMono.variable} font-mono antialiased min-h-screen flex flex-col bg-background text-foreground text-sm`}
       >
         <Navbar />
-        <main className="flex-grow pt-24">
+        <main className="flex-grow w-full max-w-2xl mx-auto px-5 pt-12 pb-24">
           {children}
         </main>
         <Footer />
