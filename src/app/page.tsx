@@ -47,7 +47,7 @@ export default function Home() {
             <Link href={`/projects/${featured.slug}`} className="text-yellow font-bold hover:underline">
               {featured.title}
             </Link>{" "}
-            — a social app for burrito people
+            — open-source AI for climate and energy
           </p>
           <div className="flex flex-wrap gap-1.5">
             {STACK.map((tech, i) => (

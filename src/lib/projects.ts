@@ -13,6 +13,28 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "bat-city-ai",
+    title: "Bat City AI",
+    date: "Oct 2026",
+    summary:
+      "An Austin studio building open-source AI for climate and energy. First project: a 24-hour load forecast for the Texas grid.",
+    description: "Open-source AI for a livable climate, built in Austin.",
+    body: [
+      "Bat City AI is my one-person studio for open-source climate and energy tools. Everything runs on public data and ships under permissive licenses.",
+      "The first project is a load forecast for ERCOT, the Texas grid. It predicts demand 24 hours ahead using about 2.5 years of grid data plus historical weather. In backtests it's off by 3.53% on average, compared with 6.30% for a simple baseline. In volatile fall weather the gap gets bigger: 4.15% vs. 14.99%.",
+      "Next up are Flare Watch, which would track methane flaring from satellite data, and Open Climate Bench, a reproducible benchmark of public climate datasets. Both are still ideas.",
+    ],
+    details: [
+      { label: "focus", value: "Climate + energy forecasting" },
+      { label: "model", value: "XGBoost, 24h-ahead ERCOT load" },
+      { label: "data", value: "ERCOT via gridstatus + Open-Meteo weather" },
+      { label: "site", value: "Next.js on Vercel" },
+    ],
+    tech: ["python", "xgboost", "gridstatus", "open-meteo", "next.js"],
+    link: "https://batcityai.com",
+    github: "https://github.com/noops/ercot-load-forecast",
+  },
+  {
     slug: "burrito-burrito-burrito",
     title: "burritoburritoburrito",
     date: "May 2026",
