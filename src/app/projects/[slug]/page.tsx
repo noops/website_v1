@@ -23,14 +23,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 <h1 className="text-3xl font-bold text-yellow">{project.title}</h1>
                 <p className="text-foreground leading-relaxed">{project.description}</p>
                 <div className="flex gap-2 pt-1 text-xs">
-                    <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border border-border px-3 py-1.5 text-muted-foreground hover:text-foreground hover:border-muted-foreground transition-colors"
-                    >
-                        source
-                    </a>
+                    {project.github && (
+                        <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="border border-border px-3 py-1.5 text-muted-foreground hover:text-foreground hover:border-muted-foreground transition-colors"
+                        >
+                            source
+                        </a>
+                    )}
                     <a
                         href={project.link}
                         target="_blank"

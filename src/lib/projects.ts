@@ -8,7 +8,7 @@ export type Project = {
   details: { label: string; value: string }[];
   tech: string[];
   link: string;
-  github: string;
+  github?: string;
 };
 
 export const projects: Project[] = [
@@ -32,7 +32,6 @@ export const projects: Project[] = [
     ],
     tech: ["react", "leaflet", "openstreetmap", "vite", "vercel"],
     link: "https://burrito-burrito-burrito.com",
-    github: "https://github.com/noops/burrito-burrito-burrito",
   },
   {
     slug: "slog-maxxing",
@@ -52,8 +51,7 @@ export const projects: Project[] = [
       { label: "features", value: "RAG Chat, Session Timers, Stream Management" },
     ],
     tech: ["next.js", "tailwind", "rag"],
-    link: "https://github.com/noops/slog_maxxing",
-    github: "https://github.com/noops/slog_maxxing",
+    link: "https://slogmaxxing.com",
   },
   {
     slug: "shmantasy-shmootball",
